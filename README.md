@@ -1,8 +1,8 @@
 # laracrud - Laravel 8
-Login - crud 
+Login - crud / Laravel 8
 
   Pasos / Steps
   
 - definir conexion a la BD / set the connection to DB => .env
-- php composer install - instalar dependencias - install dependencies
+- composer install - instalar dependencias - install dependencies
 - php artisan migrate 
