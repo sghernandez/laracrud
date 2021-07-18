@@ -19,11 +19,11 @@
           <div class="form-group">
               @csrf
               <label for="country_name">Product Name:</label>
-              <input type="text" class="form-control" name="name"/>
+              <input type="text" class="form-control" value="{{ old('name') }}" name="name"/>
           </div>
           <div class="form-group">
               <label for="cases">Product Price :</label>
-              <input type="number" class="form-control" name="price"/>
+              <input type="number" value="{{ old('price') }}" class="form-control" name="price"/>
           </div>
           <button type="submit" class="btn btn-primary">Add Product</button>
       </form>

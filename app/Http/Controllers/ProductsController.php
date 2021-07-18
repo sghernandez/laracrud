@@ -36,15 +36,9 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|max:255',
-            'price' => 'required',
-        ]);
-
-        Product::create($validatedData);
-   
+        Product::create($this->setRules($request));
         return redirect('products')->with('success', 'Product successfully saved.');
-    }
+    }   
 
     /**
      * Display the specified resource.
@@ -76,25 +70,10 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-       /*
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|min:5|max:255',
-            'price' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect(route('products.edit', $id))->withErrors($validator)->withInput();
-        }     */   
-
-        $validatedData = $request->validate([
-            'name' => 'required|min:5|max:255',
-            'price' => 'required',
-        ]);
-
-        Product::whereId($id)->update($validatedData);
-
+        Product::whereId($id)->update($this->setRules($request, $id));
         return redirect('products')->with('success', 'Product successfully updated.');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -109,4 +88,15 @@ class ProductsController extends Controller
 
         return redirect('products')->with('success', 'Product successfully deleted.');
     }
+
+
+    /* Form rules */
+    private function setRules(Request $request, $id=0)
+    {
+        return $request->validate([
+            'name' => 'required|unique:products,name,'. $id. '|min:4|max:150',
+            'price' => 'required',
+        ]);
+    }    
+
 }
