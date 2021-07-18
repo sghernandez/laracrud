@@ -1,5 +1,5 @@
-# laracrud
-Login - crud / Laravel 
+# laracrud - Laravel 8
+Login - crud 
 
   Pasos / Steps
   
